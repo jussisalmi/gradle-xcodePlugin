@@ -1,3 +1,24 @@
+# 0.23.3 (Sep 21, 2023)
+
+Changes:
+* Added symbols to the ipa: Issue #461
+* When specifing a destination for iOS simulator not only the latest runtime is search, also older runtimes.
+
+# 0.23.2 (Aug 3, 2023)
+
+Changes:
+* Added Xcode 14 specific simulator list for iOS
+
+Bugfixes: 
+* Made sure that the simulator for one runtime are only created once
+
+# 0.23.1 (Apr 25, 2023)
+
+Changes:
+* Test that are markted as expected failues, are marked as passed. Issue #460 
+
+# 0.23.0 (Apr 24, 2023)
+
 # 0.22.2
 
 Changes
