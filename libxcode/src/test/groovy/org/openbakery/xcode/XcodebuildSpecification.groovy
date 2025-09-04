@@ -135,7 +135,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDerivedDataPath_And_DefaultDirectories('xcodebuild',
 							"-scheme", 'myscheme',
@@ -167,7 +167,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = ['xcodebuild',
 														 "-scheme", 'myscheme',
@@ -197,7 +197,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDefaultDirectories('xcodebuild',
 							"-configuration", "Debug",
@@ -221,7 +221,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDerivedDataPath_And_DefaultDirectories('xcodebuild',
 							"-scheme", 'myscheme',
@@ -245,7 +245,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDerivedDataPath_And_DefaultDirectories('xcodebuild',
 							"-scheme", 'myscheme',
@@ -271,7 +271,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDerivedDataPath_DefaultDirectories_forSimulator('xcodebuild',
 							"-scheme", 'myscheme',
@@ -298,7 +298,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList << 'xcodebuild'
 			expectedCommandList <<"-scheme" << 'myscheme'
@@ -327,7 +327,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList << 'xcodebuild'
 			expectedCommandList <<"-scheme" << 'myscheme'
@@ -353,7 +353,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDerivedDataPath_DefaultDirectories_forSimulator('xcodebuild',
 							"-scheme", 'myscheme',
@@ -379,7 +379,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDefaultDirectories('xcodebuild',
 							"-configuration", "Debug",
@@ -405,7 +405,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDerivedDataPath_DefaultDirectories_forSimulator('xcodebuild',
 							"-scheme", 'myscheme',
@@ -431,7 +431,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 
 			expectedCommandList << 'xcodebuild'
@@ -463,7 +463,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDefaultDirectories(xcodeDummy.xcodebuild.absolutePath,
 							"-configuration", 'Debug',
@@ -479,7 +479,7 @@ class XcodebuildSpecification extends Specification {
 
 		given:
 		xcodebuild.parameters.target = "Test"
-		commandRunner.run(_, _, _, _) >> {
+		commandRunner.run(_, _, _, _, _) >> {
 			throw new CommandRunnerException()
 		}
 
@@ -505,7 +505,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = []
 			expectedCommandList << 'xcodebuild' << "-scheme" << 'myscheme' << "-workspace" << 'myworkspace' << "-configuration" << "Debug"
@@ -530,7 +530,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = []
 			expectedCommandList << 'xcodebuild' << "-scheme" << 'myscheme' << "-workspace" << 'myworkspace' << "-configuration" << "Debug"
@@ -552,7 +552,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> directory = arguments[0] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> directory = arguments[0] }
 		directory.endsWith("foobar")
 	}
 
@@ -589,7 +589,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> givenOutputAppender = arguments[3] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> givenOutputAppender = arguments[3] }
 		givenOutputAppender == outputAppender
 	}
 
@@ -708,7 +708,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 
 
 		interaction {
@@ -779,7 +779,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = createCommandWithDefaultDirectories('xcodebuild',
 							"-configuration", "Debug",
@@ -901,7 +901,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.executeBuildForTesting(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith("script -q /dev/null xcodebuild")
 		command.contains("-scheme myscheme")
 		command.contains("-workspace myworkspace")
@@ -965,7 +965,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments ->
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments ->
 			directory = arguments[0]
 			commandList = arguments[1]
 		}
@@ -1005,7 +1005,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.executeBuildForTesting(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> directory = arguments[0] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> directory = arguments[0] }
 		directory.endsWith("foobar")
 	}
 
@@ -1051,7 +1051,7 @@ class XcodebuildSpecification extends Specification {
 
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		commandList.contains('OTHER_CFLAGS="-fembed-bitcode"')
 		commandList.contains('BITCODE_GENERATION_MODE=bitcode')
 	}
@@ -1069,7 +1069,7 @@ class XcodebuildSpecification extends Specification {
 
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		!commandList.contains('OTHER_CFLAGS="-fembed-bitcode"')
 		!commandList.contains('BITCODE_GENERATION_MODE=bitcode')
 	}
@@ -1087,7 +1087,7 @@ class XcodebuildSpecification extends Specification {
 
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		commandList.contains('COMPILER_INDEX_STORE_ENABLE=NO')
 	}
 
@@ -1145,7 +1145,7 @@ class XcodebuildSpecification extends Specification {
 		xcodebuild.execute(outputAppender, null)
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments ->
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments ->
 			command = arguments[1].join(" ")
 		}
 		command.contains("-destination generic/platform=iOS")
