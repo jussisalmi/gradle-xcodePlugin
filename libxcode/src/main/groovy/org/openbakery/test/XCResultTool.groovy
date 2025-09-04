@@ -18,6 +18,7 @@ class XCResultTool {
 		logger.info("load result file {}", file)
 		def runner = new CommandRunner()
 		def commandList = [path, "get",
+											 "--legacy",
 											 "--format", "json",
 											 "--path", file.absolutePath]
 
@@ -36,6 +37,7 @@ class XCResultTool {
 	void exportAttachment(File from, File to, String id, String name) {
 		def runner = new CommandRunner()
 		runner.run(path, "export",
+			"--legacy",
 			"--path", from.absolutePath,
 			"--id", id,
 			"--output-path", "${to.absolutePath}/${name}",

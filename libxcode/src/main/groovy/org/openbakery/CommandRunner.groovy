@@ -64,7 +64,7 @@ class CommandRunner {
 		return "'" + result.trim() + "'"
 	}
 
-	def run(String directory, List<String> commandList, Map<String, String> environment, OutputAppender outputAppender) {
+	def run(String directory, List<String> commandList, Map<String, String> environment, OutputAppender outputAppender, Boolean verbose = false) {
 
 		logger.info("Run command: {}", commandListToString(commandList))
 		logger.debug("with working directory: {} ({})", directory, new File(directory).absoluteFile);
@@ -87,20 +87,24 @@ class CommandRunner {
 		def process = processBuilder.start()
 
 
-		processInputStream(process.inputStream, outputAppender)
+		processInputStream(process.inputStream, outputAppender, verbose)
 
 
 		process.waitFor()
 		readerThread.join()
 		if (process.exitValue() > 0) {
 			logger.debug("Exit Code: {}", process.exitValue())
-			def lastLines = commandOutputBuffer.toArray().join("\n")
-			throw new CommandRunnerException("Command failed to run (exit code " + process.exitValue() + "): " + commandListToString(commandList) + "\nTail of output:\n" + lastLines)
+			if (!verbose) {
+				def lastLines = commandOutputBuffer.toArray().join("\n")
+				throw new CommandRunnerException("Command failed to run (exit code " + process.exitValue() + "): " + commandListToString(commandList) + "\nTail of output:\n" + lastLines)
+			} else {
+				throw new CommandRunnerException("Command failed to run (exit code " + process.exitValue() + ")")
+			}
 		}
 
 	}
 
-	void processInputStream(InputStream inputStream, OutputAppender outputAppender) {
+	void processInputStream(InputStream inputStream, OutputAppender outputAppender, boolean verbose) {
 
 		Runnable runnable = new Runnable() {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -127,7 +131,9 @@ class CommandRunner {
 							outputAppender.append(line.replaceAll(/\u001B\[[\d]*m/, ""))
 						}
 
-						commandOutputBuffer.add(line)
+						if (!verbose) {
+							commandOutputBuffer.add(line)
+						}
 
 						writer.write(line)
 						writer.write("\n")

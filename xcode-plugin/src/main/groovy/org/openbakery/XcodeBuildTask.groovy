@@ -54,7 +54,7 @@ class XcodeBuildTask extends AbstractXcodeBuildTask {
 
 		Xcodebuild xcodebuild = new Xcodebuild(project.projectDir, commandRunner, xcode, parameters, getDestinations())
 
-		xcodebuild.execute(createXcodeBuildOutputAppender("XcodeBuildTask") , project.xcodebuild.environment)
+		xcodebuild.execute(createXcodeBuildOutputAppender("XcodeBuildTask", parameters.verbose) , project.xcodebuild.environment)
 		logger.lifecycle("Done")
 	}
 

@@ -94,6 +94,7 @@ class XcodeBuildPluginExtension {
 	File projectFile
 
 	Boolean bitcode = false
+	Boolean verbose = false
 
 	boolean useXcodebuildArchive = false
 
@@ -478,6 +479,7 @@ class XcodeBuildPluginExtension {
 		result.configuredDestinations = this.destinations
 		result.bitcode = this.bitcode
 		result.applicationBundle = getApplicationBundle()
+		result.verbose = this.verbose
 
 		if (this.arch != null) {
 			result.arch = this.arch.clone()
