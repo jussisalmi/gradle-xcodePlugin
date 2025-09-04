@@ -26,6 +26,7 @@ class XcodebuildParameters {
 	List<File> xctestrun
 	Boolean bitcode
 	File applicationBundle
+	Boolean verbose
 
 
 	public XcodebuildParameters() {
@@ -52,6 +53,7 @@ class XcodebuildParameters {
 						", configuredDestinations=" + configuredDestinations +
 						", xctestrun=" + xctestrun +
 						", applicationBundle=" + applicationBundle +
+						", verbose=" + verbose +
 						'}'
 	}
 
@@ -93,6 +95,9 @@ class XcodebuildParameters {
 		}
 		if (other.applicationBundle != null) {
 			applicationBundle = other.applicationBundle
+		}
+		if (other.verbose != null) {
+			verbose = other.verbose
 		}
 
 		return this

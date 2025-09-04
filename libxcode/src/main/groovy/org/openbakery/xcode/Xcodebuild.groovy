@@ -57,7 +57,7 @@ class Xcodebuild {
 		addDestinationSettings(commandList)
 		addDisableIndexing(commandList)
 
-		commandRunner.run(projectDirectory.absolutePath, commandList, environment, outputAppender)
+		commandRunner.run(projectDirectory.absolutePath, commandList, environment, outputAppender, parameters.verbose)
 	}
 
 	def commandListForTest(OutputAppender outputAppender, Map<String, String> environment) {
@@ -89,7 +89,7 @@ class Xcodebuild {
 	def executeBuildForTesting(OutputAppender outputAppender, Map<String, String> environment) {
 		def commandList = commandListForTest(outputAppender, environment)
 		commandList << "build-for-testing"
-		commandRunner.run(this.projectDirectory.absolutePath, commandList, environment, outputAppender)
+		commandRunner.run(this.projectDirectory.absolutePath, commandList, environment, outputAppender, parameters.verbose)
 	}
 
 	def executeTestWithoutBuilding(OutputAppender outputAppender, Map<String, String> environment) {
@@ -165,6 +165,10 @@ class Xcodebuild {
 				commandList.add(parameters.projectFile)
 			}
 			
+		}
+
+		if (parameters.verbose) {
+			commandList.add("-verbose")
 		}
 
 		if (parameters.bitcode) {

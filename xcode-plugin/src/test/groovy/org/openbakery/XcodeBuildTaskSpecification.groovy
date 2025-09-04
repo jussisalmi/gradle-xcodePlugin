@@ -138,7 +138,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith("xcodebuild -scheme myscheme")
 		command.contains("-workspace myworkspace")
 		command.contains("-configuration Debug")
@@ -165,7 +165,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 
 		command.startsWith("xcodebuild -scheme myscheme")
 		command.contains("-workspace myworkspace")
@@ -189,7 +189,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith("xcodebuild -configuration Debug")
 		command.contains(" -target mytarget")
 		command.contains("-destination platform=iOS Simulator,id=5F371E1E-AFCE-4589-9158-8C439A468E61")
@@ -208,7 +208,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.contains("-project")
 		command.contains(projectFile)
 	}
@@ -226,7 +226,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = ['xcodebuild',
 														 "-scheme", 'myscheme',
@@ -254,7 +254,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = ['xcodebuild',
 														 "-scheme", 'myscheme',
@@ -283,7 +283,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith("xcodebuild -scheme myscheme")
 		command.contains("-workspace myworkspace")
 		command.contains("-configuration Debug")
@@ -310,7 +310,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		interaction {
 			expectedCommandList = ['xcodebuild',
 														 "-scheme", 'myscheme',
@@ -336,7 +336,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith("xcodebuild -scheme myscheme")
 		command.contains("-workspace myworkspace")
 		command.contains("-configuration Debug")
@@ -356,7 +356,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith("xcodebuild -configuration Debug -target mytarget")
 		command.contains(expectedDefaultDirectories().join(" "))
 		command.contains("-destination platform=iOS Simulator,id=5F371E1E-AFCE-4589-9158-8C439A468E61")
@@ -374,7 +374,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith("xcodebuild -scheme myscheme -workspace myworkspace -configuration Debug")
 		command.contains(expectedDerivedDataPath().join(" "))
 		command.contains(expectedDefaultDirectories().join(" "))
@@ -394,7 +394,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith("xcodebuild -scheme myscheme -workspace myworkspace -configuration Debug ")
 		command.contains(" ARCHS=i386 ")
 		command.contains(expectedDerivedDataPath().join(" "))
@@ -419,7 +419,7 @@ class XcodeBuildTaskSpecification extends Specification {
 		xcodeBuildTask.build()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> command = arguments[1].join(" ") }
 		command.startsWith(xcodeDummy.xcodebuild.absolutePath + " -configuration Debug -target mytarget")
 		command.contains(expectedDefaultDirectories().join(" "))
 		command.contains(" -destination platform=iOS Simulator,id=5F371E1E-AFCE-4589-9158-8C439A468E61")
@@ -442,7 +442,7 @@ class XcodeBuildTaskSpecification extends Specification {
 
 		given:
 		project.xcodebuild.target = "Test"
-		commandRunner.run(_, _, _, _) >> {
+		commandRunner.run(_, _, _, _, _) >> {
 			throw new CommandRunnerException()
 		}
 

@@ -24,12 +24,14 @@ class XcodeBuildOutputAppender implements OutputAppender {
 	boolean fullProgress = false
 	OutputState outputState = OutputState.OK
 	ProgressLogger progressLogger
+	Boolean verbose = false
 
 	StyledTextOutput output
 
-	XcodeBuildOutputAppender(ProgressLogger progressLogger, StyledTextOutput output) {
+	XcodeBuildOutputAppender(ProgressLogger progressLogger, StyledTextOutput output, Boolean verbose = false) {
 		this.output = output
 		this.progressLogger = progressLogger
+		this.verbose = verbose
 		reset()
 	}
 
@@ -244,6 +246,10 @@ class XcodeBuildOutputAppender implements OutputAppender {
 				output.withStyle(StyledTextOutput.Style.Identifier).text("\n")
 				break
 			default:
+				if (verbose) {
+					output.text(line)
+					output.text("\n")
+				}
 				break
 		}
 

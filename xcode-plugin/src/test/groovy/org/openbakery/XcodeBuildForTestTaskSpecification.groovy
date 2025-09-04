@@ -98,7 +98,7 @@ class XcodeBuildForTestTaskSpecification extends Specification {
 		xcodeBuildForTestTask.buildForTest()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> commandList = arguments[1] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> commandList = arguments[1] }
 		commandList.contains("build-for-testing")
 		commandList.contains("myscheme")
 	}
@@ -111,7 +111,7 @@ class XcodeBuildForTestTaskSpecification extends Specification {
 		xcodeBuildForTestTask.buildForTest()
 
 		then:
-		1 * commandRunner.run(_, _, _, _) >> { arguments -> outputAppender = arguments[3] }
+		1 * commandRunner.run(_, _, _, _, _) >> { arguments -> outputAppender = arguments[3] }
 		outputAppender instanceof XcodeBuildOutputAppender
 	}
 
