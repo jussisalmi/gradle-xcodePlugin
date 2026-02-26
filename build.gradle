@@ -1,7 +1,7 @@
 allprojects {
 	apply plugin: 'java-gradle-plugin'
 	apply plugin: 'groovy'
-	apply plugin: "maven"
+	apply plugin: "maven-publish"
 
 	def versionNumber = "0.23.3"
 
