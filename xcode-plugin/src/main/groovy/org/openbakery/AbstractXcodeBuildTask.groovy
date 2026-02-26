@@ -9,7 +9,6 @@ import org.gradle.internal.logging.progress.ProgressLogger
 import org.gradle.internal.logging.progress.ProgressLoggerFactory
 import org.gradle.internal.logging.text.StyledTextOutput
 import org.gradle.internal.logging.text.StyledTextOutputFactory
-import org.gradle.util.ConfigureUtil
 import org.openbakery.codesign.Security
 import org.openbakery.output.XcodeBuildOutputAppender
 import org.openbakery.xcode.Destination
@@ -140,7 +139,7 @@ abstract class AbstractXcodeBuildTask extends AbstractXcodeTask {
 
 	void destination(Closure closure) {
 		Destination destination = new Destination()
-		ConfigureUtil.configure(closure, destination)
+		project.configure(destination, closure)
 		setDestination(destination)
 	}
 
