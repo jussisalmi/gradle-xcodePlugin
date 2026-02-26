@@ -1,7 +1,7 @@
 plugins {
 	id 'maven-publish'
 	id 'java-gradle-plugin'
-	id "com.gradle.plugin-publish" version "0.17.0"
+	id "com.gradle.plugin-publish" version "1.2.1"
 	id 'java-library'
 }
 
@@ -71,25 +71,15 @@ publishing {
 
 
 gradlePlugin {
+	website = 'https://openbakery.org/gxp/'
+	vcsUrl = 'https://github.com/openbakery/gradle-xcodePlugin'
 	plugins {
 		xcodePlugin {
 			id = 'org.openbakery.xcode-plugin'
 			implementationClass = 'org.openbakery.XcodePlugin'
-		}
-	}
-}
-
-
-
-pluginBundle {
-	website = 'https://openbakery.org/gxp/'
-	vcsUrl = 'https://github.com/openbakery/gradle-xcodePlugin'
-	description = 'A gradle plugin for building Xcode projects!'
-
-	plugins {
-		xcodePlugin {
 			displayName = 'Gradle Xcode plugin'
 			tags = ['xcode', 'iOS', 'os x', "osx", "mac", "iphone", "ipad"]
+			description = 'A gradle plugin for building Xcode projects!'
 		}
 	}
 }
