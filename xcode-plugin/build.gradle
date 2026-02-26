@@ -52,7 +52,7 @@ task sourcesJar(type: Jar) {
 	from sourceSets.main.allSource
 	from project(":libxcode").sourceSets.main.allSource
 	from project(":libxcodetools").sourceSets.main.allSource
-	classifier = 'sources'
+	archiveClassifier = 'sources'
 }
 
 publishing {
