@@ -40,7 +40,7 @@ dependencies {
 }
 
 
-project.archivesBaseName = 'xcode-plugin'
+project.base.archivesName = 'xcode-plugin'
 
 jar {
 	from project.sourceSets.main.output
