@@ -1,5 +1,6 @@
 package org.openbakery.test
 
+import groovy.ant.FileNameFinder
 import org.openbakery.xcode.Destination
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

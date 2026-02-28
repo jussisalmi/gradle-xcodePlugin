@@ -18,7 +18,6 @@ package org.openbakery
 import org.apache.commons.io.filefilter.SuffixFileFilter
 import org.apache.commons.lang3.StringUtils
 import org.gradle.api.Project
-import org.gradle.util.ConfigureUtil
 import org.openbakery.signing.Signing
 import org.openbakery.xcode.Destination
 import org.openbakery.xcode.Type
@@ -214,7 +213,7 @@ class XcodeBuildPluginExtension {
 	}
 
 	void signing(Closure closure) {
-		ConfigureUtil.configure(closure, this.signing)
+		project.configure(this.signing, closure)
 	}
 
 
@@ -237,7 +236,7 @@ class XcodeBuildPluginExtension {
 
 	void destination(Closure closure) {
 		Destination destination = new Destination()
-		ConfigureUtil.configure(closure, destination)
+		project.configure(destination, closure)
 		setDestination(destination)
 	}
 
